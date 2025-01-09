@@ -12,6 +12,10 @@ class PowerBallTicket:
             self._numbers.append(random.randint(1, 26))
 
     def __str__(self):
+        # value = ""
+        # for number in self._numbers:
+        #     value += str(number) + " "
+        # return value[:-1]
         return " ".join(str(number) for number in self._numbers)
 
     def get_numbers(self):
