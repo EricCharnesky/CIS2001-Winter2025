@@ -56,10 +56,10 @@ class FibonacciProgression(Progression):
 
 
 r = float(input("Enter an r value between -1 and 1, excluding 0"))
+start_value = float(input("Enter a starting value"))
+expected_sum = start_value / ( 1 - r )
 
-expected_sum = 1 / ( 1 - r )
-
-progression = GeometricProgression(r)
+progression = GeometricProgression(r, start_value)
 
 current_sum = 0
 for value in progression:
