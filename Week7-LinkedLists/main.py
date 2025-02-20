@@ -1,79 +1,19 @@
+from singly_linked_list import SinglyLinkedList
+from double_linked_list import DoublyLinkedList
 
-class SinglyLinkedList:
+single_linked_list = SinglyLinkedList()
 
-    class Node:
+for number in range(10):
+    single_linked_list.append(number)
 
-        def __init__(self, data, next=None):
-            self.data = data
-            self.next = next
+while not single_linked_list.is_empty():
+    print(single_linked_list.remove_front())
 
-    def __init__(self):
-        self._front = None
-        self._back = None
-        self._number_of_items = 0
+double_linked_list = DoublyLinkedList()
 
-    def __len__(self):
-        return self._number_of_items
+for number in range(10):
+    double_linked_list.add_back(number)
 
-    def is_empty(self):
-        return len(self) == 0
+while not double_linked_list.is_empty():
+    print(double_linked_list.remove_back())
 
-    # O(1)
-    def append(self, data):
-        if self._front is None:
-            self._front = self.Node(data)
-            self._back = self._front
-        else:
-            self._back.next = self.Node(data)
-            self._back = self._back.next
-        self._number_of_items += 1
-
-    # O(1)
-    def remove_front(self):
-        if self.is_empty():
-            raise ValueError("Empty!")
-        data = self._front.data
-        self._front = self._front.next
-
-        if self._front is None:
-            self._back = None
-
-        self._number_of_items -= 1
-        return data
-
-    #O(n)
-    def find(self, data):
-        current_node = self._front
-
-        while current_node is not None:
-            if current_node.data == data:
-                return True
-            current_node = current_node.next
-
-        return False
-
-    # O(n)
-    def __getitem__(self, index):
-        if index < 0 or index >= self._number_of_items:
-            raise IndexError()
-        current_index = 0
-        current_node = self._front
-
-        while current_index != index:
-            current_node = current_node.next
-            current_index += 1
-
-        return current_node.data
-
-    # O(n)
-    def __setitem__(self, index, item):
-        if index < 0 or index >= self._number_of_items:
-            raise IndexError()
-        current_index = 0
-        current_node = self._front
-
-        while current_index != index:
-            current_node = current_node.next
-            current_index += 1
-
-        current_node.data = item
