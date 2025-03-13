@@ -1,28 +1,19 @@
-class Tree:
+from collections import deque
+from n_tree import Tree
 
-    def __init__(self, data):
-        self.data = data
-        self.children = []
+import random
 
-    def add_child(self, data):
-        self.children.append(Tree(data))
+from priority_queue import MaxPriorityQueueList
 
-    def is_leaf(self):
-        return len(self.children) == 0
+max_queue = MaxPriorityQueueList()
 
-    def print_tree_depth_first(self):
-        print(self.data)
-        for child in self.children:
-            child.print_tree()
+for _ in range(100):
+    max_queue.add(random.randint(1, 1000))
 
-    def _print_tree_breadth_first(self, queue):
-        pass # TODO - FINISH THURSDAY
+while len(max_queue):
+    print(max_queue.remove())
 
-    def print_tree_breadth_first(self):
-        items = []
-        items.append(self.data)
-        for child in self.children:
-            child._print_tree_breadth_first(items)
+
 
 classification_system = Tree('Animalia')
 classification_system.add_child('Chordata')
@@ -41,7 +32,7 @@ primates = mammalia.children[1]
 diprotodontia.add_child('Quokka')
 primates.add_child('Lemur')
 
-classification_system.print_tree()
+classification_system.print_tree_breadth_first()
 
 
 
